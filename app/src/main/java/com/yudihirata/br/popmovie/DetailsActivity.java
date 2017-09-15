@@ -22,6 +22,8 @@ public class DetailsActivity extends UiDetailsActivity {
             mSynopsis.setText(movie.getOverview());
             mReleaseDate.setText(movie.getReleaseDate("MMM dd, yyyy"));
             mVoteCount.setText(String.valueOf(movie.getVoteCount()) );
+            mRatingBar.setRating((float)movie.getVoteAverage()/10 );
+            mRate.setText(String.valueOf(movie.getVoteAverage()));
 
             Picasso.with(this)
                     .load(movie.getBackdropUri("w500").toString())

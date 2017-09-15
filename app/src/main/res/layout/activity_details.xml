@@ -33,20 +33,18 @@
         android:padding="1dp"
         app:layout_constraintTop_toBottomOf="@+id/iv_backdrop_poster"
         android:contentDescription="@string/description_poster_image" />
-    <ImageView
-        android:id="@+id/iv_star"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:src="@drawable/ic_star_black_24dp"
-        android:tint="@color/GoogleColorPalette_Yellow"
-        android:padding="1dp"
+    <RatingBar
+        style="?attr/ratingBarStyleIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rb_rate"
+        android:numStars="1"
+        android:rating="8.8"
         app:layout_constraintLeft_toRightOf="@+id/iv_poster"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/tx_date"
-        android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/fl_title"
-        android:layout_marginStart="8dp"
-        android:contentDescription="@string/description_star_image" />
+        app:layout_constraintBottom_toTopOf="@+id/tx_date"
+        android:contentDescription="@string/description_star_image"
+        />
 
     <FrameLayout
         android:id="@+id/fl_title"
@@ -77,11 +75,11 @@
         android:textColor="@color/cardview_light_background"
         android:id="@+id/tv_rate"
         android:textSize="24sp"
-        app:layout_constraintTop_toTopOf="@+id/iv_star"
+        app:layout_constraintTop_toTopOf="@+id/rb_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/vote_average"
-        app:layout_constraintStart_toEndOf="@id/iv_star"
+        app:layout_constraintStart_toEndOf="@id/rb_rate"
         tools:layout_editor_absoluteX="150dp" />
 
     <TextView
@@ -126,7 +124,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/synopsis"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
