@@ -23,7 +23,7 @@ public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
     public MovieViewHolder(RestAdapterListener OnClickListener, View itemView) {
         super(itemView);
-        mImageView       = itemView.findViewById(R.id.iv_poster);
+        mImageView       = itemView.findViewById(R.id.iv_backdrop_poster);
         itemView.setOnClickListener(this);
         mOnClickListener = OnClickListener;
     }

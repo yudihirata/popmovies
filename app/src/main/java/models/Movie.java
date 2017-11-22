@@ -178,7 +178,7 @@ public class Movie {
 	public int getVoteCount(){
 		return voteCount;
 	}
-	private URI getPosterUri(String size){
+	public URI getPosterUri(String size){
 		String url = BASE_IMAGE_URL + "/" + size + "/" + getPosterPath();
 		try {
 			URI uri = new URI(url);
@@ -222,7 +222,7 @@ public class Movie {
 
 	@Override
  	public String toString(){
-		return 
+		return
 			"Movie{" +
 			"overview = '" + overview + '\'' + 
 			",original_language = '" + originalLanguage + '\'' + 

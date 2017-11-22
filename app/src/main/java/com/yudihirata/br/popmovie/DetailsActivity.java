@@ -24,6 +24,7 @@ public class DetailsActivity extends UiDetailsActivity {
             mVoteCount.setText(String.valueOf(movie.getVoteCount()) );
             mRatingBar.setRating((float)movie.getVoteAverage()/10 );
             mRate.setText(String.valueOf(movie.getVoteAverage()));
+            mToolbar.setTitle(movie.getTitle());
 
             Picasso.with(this)
                     .load(movie.getBackdropUri("w500").toString())
@@ -34,7 +35,7 @@ public class DetailsActivity extends UiDetailsActivity {
                     .into(mBackdrop);
 
             Picasso.with(this)
-                    .load(movie.getPosterUri().toString())
+                    .load(movie.getPosterUri("w500").toString())
                     .fit()
                     .centerCrop()
                     .placeholder(R.drawable.poster_default)

@@ -2,6 +2,7 @@ package com.yudihirata.br.popmovie;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ public abstract class UiDetailsActivity extends AppCompatActivity {
     ImageView mBackdrop;
     TextView mVoteCount;
     RatingBar mRatingBar;
+    Toolbar mToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,5 +33,6 @@ public abstract class UiDetailsActivity extends AppCompatActivity {
         mBackdrop    = ((ImageView)(findViewById(R.id.iv_backdrop_poster)));
         mPoster      = ((ImageView)(findViewById(R.id.iv_poster)));
         mRatingBar   = ((RatingBar)(findViewById(R.id.rb_rate)));
+        mToolbar     = ((Toolbar)(findViewById(R.id.toolbar)));
     }
 }
