@@ -119,7 +119,7 @@ public class Movie {
 		this.posterPath = posterPath;
 	}
 
-	private String getPosterPath(){
+	public String getPosterPath(){
 		return posterPath;
 	}
 
@@ -127,7 +127,7 @@ public class Movie {
 		this.backdropPath = backdropPath;
 	}
 
-	private String getBackdropPath(){
+	public String getBackdropPath(){
 		return backdropPath;
 	}
 
@@ -135,7 +135,7 @@ public class Movie {
 		this.releaseDate = releaseDate;
 	}
 
-	private String getReleaseDate(){
+	public String getReleaseDate(){
 		return releaseDate;
 	}
 
@@ -178,6 +178,7 @@ public class Movie {
 	public int getVoteCount(){
 		return voteCount;
 	}
+
 	public URI getPosterUri(String size){
 		String url = BASE_IMAGE_URL + "/" + size + "/" + getPosterPath();
 		try {
@@ -188,6 +189,7 @@ public class Movie {
 		}
 		return null;
 	}
+
 	public URI getPosterUri(){
 		return getPosterUri("w185");
 	}

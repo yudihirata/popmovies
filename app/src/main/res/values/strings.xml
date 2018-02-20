@@ -3,13 +3,15 @@
     <string name="default_title">Default</string>
     <string name="top_rated">Top rated</string>
     <string name="popular">Popular</string>
+    <string name="favorites">Favorites</string>
     <string name="release_date">01/01/1970</string>
     <string name="vote_average">8.8</string>
     <string name="synopsis">Synopsis</string>
     <string name="vote_count">vote count</string>
     <string name="max_rate">/10</string>
-    <string name="description_backdrop_poster_image">This is a backdrop poster image</string>
     <string name="description_poster_image">This is a poster image</string>
     <string name="description_star_image">This is a star image</string>
+    <string name="trailers">Trailers:</string>
+    <string name="reviews">Reviews:</string>
 
 </resources>

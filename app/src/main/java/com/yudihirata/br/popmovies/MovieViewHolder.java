@@ -1,4 +1,4 @@
-package com.yudihirata.br.popmovie;
+package com.yudihirata.br.popmovies;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
-import com.yudihirata.br.popmovie.adapters.RestAdapterListener;
+import com.yudihirata.br.popmovies.adapters.listener.RestAdapterListener;
 
 import models.Movie;
 
@@ -20,15 +20,14 @@ public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnC
     private Movie mMovie;
 
 
-
     public MovieViewHolder(RestAdapterListener OnClickListener, View itemView) {
         super(itemView);
-        mImageView       = itemView.findViewById(R.id.iv_backdrop_poster);
+        mImageView = itemView.findViewById(R.id.iv_backdrop_poster);
         itemView.setOnClickListener(this);
         mOnClickListener = OnClickListener;
     }
 
-    public void bind(Context context, Movie movie){
+    public void bind(Context context, Movie movie) {
 
         mMovie = movie;
         Picasso.with(context)

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
@@ -10,166 +9,205 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="330dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
-            app:expandedTitleMarginEnd="64dp">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
                 android:id="@+id/iv_poster"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
                 android:fitsSystemWindows="true"
-                app:layout_collapseMode="parallax" />
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"
+                android:contentDescription="@string/description_poster_image" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:layout_collapseMode="pin" />
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
+
     <android.support.v4.widget.NestedScrollView
-        android:focusableInTouchMode="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
+        android:focusableInTouchMode="true"
         android:paddingTop="60dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
 
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context="com.yudihirata.br.popmovie.DetailsActivity">
-
-
-
-    <ImageView
-        android:id="@+id/iv_backdrop_poster"
-        android:layout_width="200dp"
-        android:layout_height="132dp"
-        android:padding="1dp"
-        app:layout_constraintTop_toBottomOf="@+id/fl_title"
-        android:contentDescription="@string/description_poster_image" />
-    <RatingBar
-        style="?attr/ratingBarStyleIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rb_rate"
-        android:numStars="1"
-        android:rating="8.8"
-        app:layout_constraintLeft_toRightOf="@+id/iv_backdrop_poster"
-        app:layout_constraintTop_toBottomOf="@+id/fl_title"
-        app:layout_constraintBottom_toTopOf="@+id/tx_date"
-        android:contentDescription="@string/description_star_image"
-        />
-
-    <FrameLayout
-        android:id="@+id/fl_title"
-        android:layout_width="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_height="wrap_content"        >
-        <TextView
-            android:textColor="@color/cardview_dark_background"
-            android:layout_margin="8dp"
-            android:id="@+id/tx_title"
-            android:textSize="22sp"
-            android:maxLines="1"
-            android:ellipsize="marquee"
-            android:text="@string/default_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginLeft="8dp" />
-    </FrameLayout>
+            tools:context="com.yudihirata.br.popmovies.DetailsActivity">
 
 
-    <TextView
-        android:textColor="@color/cardview_dark_background"
-        android:id="@+id/tv_rate"
-        android:textSize="24sp"
-        app:layout_constraintTop_toTopOf="@+id/rb_rate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/vote_average"
-        app:layout_constraintStart_toEndOf="@id/rb_rate"
-        tools:layout_editor_absoluteX="150dp" />
+            <ImageView
+                android:id="@+id/iv_backdrop_poster"
+                android:layout_width="200dp"
+                android:layout_height="132dp"
+                android:contentDescription="@string/description_poster_image"
+                android:padding="1dp"
+                app:layout_constraintTop_toBottomOf="@+id/fl_title" />
 
-    <TextView
-        android:textColor="@color/cardview_light_background"
-        android:id="@+id/tv_max_rate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/max_rate"
-        app:layout_constraintLeft_toRightOf="@+id/tv_rate"
-        android:layout_marginStart="2dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tv_rate"
-        />
-    <TextView
-        android:textColor="@color/cardview_dark_background"
-        android:id="@+id/tv_vote_count"
-        app:layout_constraintStart_toStartOf="@id/tv_rate"
-        app:layout_constraintTop_toBottomOf="@+id/tv_max_rate"
-        android:text="@string/vote_count"
-        android:textSize="12sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="150dp" />
+            <RatingBar
+                android:id="@+id/rb_rate"
+                style="?attr/ratingBarStyleIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/description_star_image"
+                android:numStars="1"
+                android:rating="8.8"
+                app:layout_constraintBottom_toTopOf="@+id/tx_date"
+                app:layout_constraintLeft_toRightOf="@+id/iv_backdrop_poster"
+                app:layout_constraintTop_toBottomOf="@+id/fl_title" />
 
-    <TextView
-        android:textColor="@color/cardview_dark_background"
-        android:layout_margin="8dp"
-        android:id="@+id/tx_date"
-        android:text="@string/release_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="2dp"
-        app:layout_constraintLeft_toRightOf="@+id/iv_backdrop_poster"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_backdrop_poster"
-        android:layout_marginStart="8dp" />
+            <FrameLayout
+                android:id="@+id/fl_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/tx_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    android:padding="2dp"
+                    android:text="@string/default_title"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="22sp" />
+            </FrameLayout>
 
 
-    <TextView
-        android:textColor="@color/cardview_dark_background"
-        android:id="@+id/tv_synopsis"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/synopsis"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_margin="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_backdrop_poster" />
+            <TextView
+                android:id="@+id/tv_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/vote_average"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@id/rb_rate"
+                app:layout_constraintTop_toTopOf="@+id/rb_rate"
+                tools:layout_editor_absoluteX="150dp" />
 
-</android.support.constraint.ConstraintLayout>
+            <TextView
+                android:id="@+id/tv_max_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:text="@string/max_rate"
+                android:textColor="@color/cardview_light_background"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_rate"
+                app:layout_constraintLeft_toRightOf="@+id/tv_rate" />
+
+            <TextView
+                android:id="@+id/tv_vote_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/vote_count"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/tv_rate"
+                app:layout_constraintTop_toBottomOf="@+id/tv_max_rate"
+                tools:layout_editor_absoluteX="150dp" />
+
+            <TextView
+                android:id="@+id/tx_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="8dp"
+                android:padding="2dp"
+                android:text="@string/release_date"
+                android:textColor="@color/cardview_dark_background"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_backdrop_poster"
+                app:layout_constraintLeft_toRightOf="@+id/iv_backdrop_poster" />
+
+
+            <TextView
+                android:id="@+id/tv_synopsis"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/synopsis"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_backdrop_poster" />
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/activity_reviews_swipe_refresh_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/cardview_dark_background">
+
+            </android.support.v4.widget.SwipeRefreshLayout>
+            <TextView
+                android:padding="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_synopsis"
+                android:id="@+id/tx_trailers"
+                android:text="@string/trailers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.RecyclerView
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tx_trailers"
+                android:id="@+id/rv_trailers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:padding="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_trailers"
+                android:id="@+id/tx_reviews"
+                android:text="@string/reviews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_reviews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tx_reviews" />
+
+
+        </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
+
     <android.support.design.widget.FloatingActionButton
-        android:layout_height="wrap_content"
+        android:id="@+id/fa_favorite"
         android:layout_width="wrap_content"
-        app:layout_anchor="@id/appbar"
-        app:layout_anchorGravity="bottom|right|end"
+        android:layout_height="wrap_content"
         android:src="@drawable/ic_favorite_black_24dp"
-        android:clickable="true"/>
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="bottom|right|end" />
 </android.support.design.widget.CoordinatorLayout>

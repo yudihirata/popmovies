@@ -1,4 +1,4 @@
-package com.yudihirata.br.popmovie;
+package com.yudihirata.br.popmovies;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

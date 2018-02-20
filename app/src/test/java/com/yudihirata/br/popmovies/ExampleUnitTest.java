@@ -1,4 +1,4 @@
-package com.yudihirata.br.popmovie;
+package com.yudihirata.br.popmovies;
 
 import org.junit.Test;
 

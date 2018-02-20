@@ -1,4 +1,4 @@
-package com.yudihirata.br.popmovie.adapters;
+package com.yudihirata.br.popmovies.adapters.listener;
 
 import models.Movie;
 
@@ -9,3 +9,7 @@ import models.Movie;
 public interface RestAdapterListener {
     void onItemClick(Movie movie);
 }
+
+
+
+
