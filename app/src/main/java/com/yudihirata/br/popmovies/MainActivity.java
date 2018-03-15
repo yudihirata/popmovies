@@ -14,6 +14,7 @@ import org.parceler.Parcels;
 
 import java.util.List;
 
+import icepick.Icepick;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -40,7 +41,6 @@ public class MainActivity extends UiMainActivity implements RestAdapterListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mMovieObserver = new Observer(mRecyclerView, new RestMoviesAdapter(this));
         mMovieDBManager = new MovieDBManager();
 
@@ -51,7 +51,11 @@ public class MainActivity extends UiMainActivity implements RestAdapterListener
                 e.onComplete();
             }
         });
-        onRefresh();
+        if (savedInstanceState == null) {
+            onRefresh();
+        } else {
+            Icepick.restoreInstanceState(this, savedInstanceState);
+        }
     }
 
     @Override
@@ -93,7 +97,7 @@ public class MainActivity extends UiMainActivity implements RestAdapterListener
 
     private void UpdateFavorites() {
         Facade facade = new Facade(getApplicationContext());
-        mMovieObserver.onNext(facade.getListFavorites());
+        mMovieObserver.setList(facade.getListFavorites());
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
@@ -121,6 +125,24 @@ public class MainActivity extends UiMainActivity implements RestAdapterListener
         if (getSelectedFilter().equals(MovieDBManager.FAVORITES)) {
             UpdateFavorites();
         }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        Log.d(Thread.currentThread().getStackTrace()[STACK_TRACE_LEVELS_UP].getFileName(),
+                Thread.currentThread().getStackTrace()[STACK_TRACE_LEVELS_UP].getMethodName());
+        super.onRestoreInstanceState(savedInstanceState);
+
+        if (savedInstanceState.containsKey("mList")) {
+            mList = Parcels.unwrap(savedInstanceState.getParcelable("mList"));
+            mMovieObserver.setList(mList);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable("mList", Parcels.wrap(mList));
     }
 }
 

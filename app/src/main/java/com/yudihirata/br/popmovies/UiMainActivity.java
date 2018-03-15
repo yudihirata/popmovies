@@ -42,12 +42,12 @@ public abstract class UiMainActivity extends AppCompatActivity implements Callba
                 Thread.currentThread().getStackTrace()[STACK_TRACE_LEVELS_UP].getMethodName());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Icepick.restoreInstanceState(this, savedInstanceState);
 
         /*Recycler view*/
         mRecyclerView = findViewById(R.id.rv_movies);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, COLUMNS));
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+            mRecyclerView.setLayoutManager(new GridLayoutManager(this, COLUMNS * 2));
         } else {
             mRecyclerView.setLayoutManager(new GridLayoutManager(this, COLUMNS));
         }
@@ -95,14 +95,6 @@ public abstract class UiMainActivity extends AppCompatActivity implements Callba
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        Log.d(Thread.currentThread().getStackTrace()[STACK_TRACE_LEVELS_UP].getFileName(),
-                Thread.currentThread().getStackTrace()[STACK_TRACE_LEVELS_UP].getMethodName());
-        super.onSaveInstanceState(outState);
-        Icepick.saveInstanceState(this, outState);
-    }
-
     String getSelectedFilter() {
         switch (mFilter_selected) {
             case R.id.menu_item_popular:
@@ -112,5 +104,13 @@ public abstract class UiMainActivity extends AppCompatActivity implements Callba
             default:
                 return MovieDBManager.FAVORITES;
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        Log.d(Thread.currentThread().getStackTrace()[STACK_TRACE_LEVELS_UP].getFileName(),
+                Thread.currentThread().getStackTrace()[STACK_TRACE_LEVELS_UP].getMethodName());
+        super.onSaveInstanceState(outState);
+        Icepick.saveInstanceState(this, outState);
     }
 }

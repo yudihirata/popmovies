@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.yudihirata.br.popmovies.DetailsActivity"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionbar"/>
         <provider
             android:name="com.yudihirata.br.popmovies.data.FavoritesContentProvider"

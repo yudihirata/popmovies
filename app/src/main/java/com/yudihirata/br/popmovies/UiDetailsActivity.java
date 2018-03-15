@@ -2,16 +2,20 @@ package com.yudihirata.br.popmovies;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import icepick.Icepick;
 
 /**
  * Created by marco.hirata on 13/09/2017.
@@ -19,6 +23,7 @@ import android.widget.TextView;
 
 public abstract class UiDetailsActivity extends AppCompatActivity implements
         SwipeRefreshLayout.OnRefreshListener {
+    static final int STACK_TRACE_LEVELS_UP = 2;
     private static final int COLUMNS = 1;
     SwipeRefreshLayout mSwipeRefreshLayout;
     TextView mTitle;
@@ -33,6 +38,8 @@ public abstract class UiDetailsActivity extends AppCompatActivity implements
     RecyclerView mRecyclerViewTrailers;
     RecyclerView mRecyclerViewReviews;
     FloatingActionButton mFloatingActionButton;
+    NestedScrollView mNestedScrollView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +76,7 @@ public abstract class UiDetailsActivity extends AppCompatActivity implements
                 onClickFloatingActionButton(view);
             }
         });
-
+        mNestedScrollView = findViewById(R.id.nested_scroll_view);
     }
 
     @Override
@@ -78,5 +85,13 @@ public abstract class UiDetailsActivity extends AppCompatActivity implements
     }
 
     void onClickFloatingActionButton(View view) {
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        Log.d(Thread.currentThread().getStackTrace()[STACK_TRACE_LEVELS_UP].getFileName(),
+                Thread.currentThread().getStackTrace()[STACK_TRACE_LEVELS_UP].getMethodName());
+        super.onSaveInstanceState(outState);
+        Icepick.saveInstanceState(this, outState);
     }
 }

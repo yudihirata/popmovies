@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 
 import com.squareup.picasso.Picasso;
@@ -19,6 +20,7 @@ import org.parceler.Parcels;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import icepick.Icepick;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -109,10 +111,15 @@ public class DetailsActivity extends UiDetailsActivity implements RestAdapterTra
                     .placeholder(R.drawable.poster_default)
                     .error(R.drawable.poster_default)
                     .into(mPoster);
-            onRefresh();
-        }
 
+            if (savedInstanceState == null) {
+                onRefresh();
+            } else {
+                Icepick.restoreInstanceState(this, savedInstanceState);
+            }
+        }
     }
+
 
     @Override
     public void onRefresh() {
@@ -186,5 +193,54 @@ public class DetailsActivity extends UiDetailsActivity implements RestAdapterTra
                 mFloatingActionButton.setColorFilter(Color.RED);
             }
         }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        Log.d(Thread.currentThread().getStackTrace()[STACK_TRACE_LEVELS_UP].getFileName(),
+                Thread.currentThread().getStackTrace()[STACK_TRACE_LEVELS_UP].getMethodName());
+        super.onRestoreInstanceState(savedInstanceState);
+
+        if (savedInstanceState.containsKey("mListReviews") && savedInstanceState
+                .containsKey("ListStateReviews")) {
+            mListReviews = Parcels.unwrap(savedInstanceState.getParcelable("mListReviews"));
+            mObserverReviews.setList(mListReviews);
+            mRecyclerViewReviews.getLayoutManager().onRestoreInstanceState(savedInstanceState
+                    .getParcelable("ListState"));
+        }
+
+        if (savedInstanceState.containsKey("mListTrailers") && savedInstanceState
+                .containsKey("ListStateTrailers")) {
+            mListTrailers = Parcels.unwrap(savedInstanceState.getParcelable("mListTrailers"));
+            mObserverTrailers.setList(mListTrailers);
+            mRecyclerViewReviews.getLayoutManager().onRestoreInstanceState(savedInstanceState
+                    .getParcelable("mListTrailers"));
+        }
+
+        if (savedInstanceState.containsKey("mMovie")) {
+            mMovie = Parcels.unwrap(savedInstanceState.getParcelable("mMovie"));
+        }
+
+        if (savedInstanceState.containsKey("mNestedScrollView")) {
+            mNestedScrollView.setVerticalScrollbarPosition(savedInstanceState
+                    .getInt("mNestedScrollView"));
+        }
+    }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putParcelable("mMovie", Parcels.wrap(mMovie));
+        outState.putParcelable("mListReviews", Parcels.wrap(mListReviews));
+        outState.putParcelable("ListStateReviews", mRecyclerViewReviews.getLayoutManager()
+                .onSaveInstanceState());
+        outState.putParcelable("ListStateTrailers", mRecyclerViewTrailers.getLayoutManager()
+                .onSaveInstanceState());
+        outState.putParcelable("mListTrailers", Parcels.wrap(mListTrailers));
+        outState.putInt("mNestedScrollView", mNestedScrollView.getVerticalScrollbarPosition());
+
+
     }
 }

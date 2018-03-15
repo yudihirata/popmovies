@@ -34,13 +34,21 @@ public class Observer implements io.reactivex.Observer<List<?>> {
 
     }
 
-    public void onNext(@NonNull List<?> list) {
+    public void setList(List<?> list){
         if (list.size() > 0) {
             BaseAdapter adapter = (BaseAdapter) mRecyclerView.getAdapter();
             adapter.setList(list);
-            mRecyclerView.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
+            this.setAdapter(adapter);
         }
+    }
+
+    public void setAdapter(RecyclerView.Adapter adapter){
+        mRecyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void onNext(@NonNull List<?> list) {
+        this.setList(list);
     }
 
 }
